@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Script & Clie</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #0a1630, #0f1d3a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #1a233a;
+      padding: 35px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      color: #e2e8f0;
+      width: 600px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    /* Tabs */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .tab-buttons button {
+      padding: 10px 25px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .tab-buttons .active {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 0 12px rgba(37,99,235,0.7);
+    }
+
+    .tab-buttons .inactive {
+      background: #111c2d;
+      color: #38bdf8;
+      border: 1px solid #2563eb;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      background: #10182c;
+      padding: 20px;
+      border-radius: 14px;
+    }
+
+    .grid div {
+      background: #1e3a8a;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .grid div:hover {
+      background: #2563eb;
+      transform: translateY(-4px);
+    }
+
+    .grid img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    /* Toast */
+    #toast {
+      visibility: hidden;
+      min-width: 180px;
+      background-color: #2563eb;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 30px;
+      font-size: 14px;
+    }
+
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.4s, fadeout 0.4s 2s;
+    }
+
+    @keyframes fadein {
+      from {bottom: 20px; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 20px; opacity: 0;}
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Trang Demo - Script & Clie</h2>
+    
+    <!-- Tab buttons -->
+    <div class="tab-buttons">
+      <button id="btnScript" class="active">✏ Script</button>
+      <button id="btnClie" class="inactive">🌐 Clie</button>
+    </div>
+
+    <!-- Script tab -->
+    <div id="scriptTab" class="grid">
+      <div onclick="copyScript('Script số 1')">
+        <img src="https://sangogago.com/wp-content/uploads/2025/07/anh-lon-dep-18.jpg" alt="script1">
+        Script 1
+      </div>
+      <div onclick="copyScript('Script số 2')">
+        <img src="https://anhsex.blog/wp-content/uploads/2024/04/anh-sex-0821-192232-032.jpg" alt="script2">
+        Script 2
+      </div>
+      <div onclick="copyScript('Script số 3')">
+        <img src="https://animephoto.net/wp-content/uploads/2025/07/lon.jpg" alt="script3">
+        Script 3
+      </div>
+      <div onclick="copyScript('Script số 4')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmcAwtLEyzlPJ2zNq0FlqtXe6XVYxTar83enEpDLMfPANlmB1-u6lr-LVybP1GnfS0wV0&usqp=CAU" alt="script4">
+        Script 4
+      </div>
+    </div>
+
+    <!-- Clie tab -->
+    <div id="clieTab" class="grid" style="display: none;">
+      <div onclick="goToLink('https://google.com')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLunRa4dkYateKObglhc8nalSLZYalyY5g6Kly8F0wGhS7J0IkV8IQlKkWcQOOByfD4Ak&usqp=CAU" alt="Google">
+        Google
+      </div>
+      <div onclick="goToLink('https://youtube.com')">
+        <img src="https://img.icons8.com/color/48/youtube-play.png" alt="YouTube">
+        YouTube
+      </div>
+      <div onclick="goToLink('https://facebook.com')">
+        <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook">
+        Facebook
+      </div>
+      <div onclick="goToLink('https://github.com')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub">
+        GitHub
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast">Đã sao chép!</div>
+
+  <script>
+    const btnScript = document.getElementById("btnScript");
+    const btnClie = document.getElementById("btnClie");
+    const scriptTab = document.getElementById("scriptTab");
+    const clieTab = document.getElementById("clieTab");
+
+    btnScript.addEventListener("click", () => {
+      btnScript.classList.add("active");
+      btnScript.classList.remove("inactive");
+      btnClie.classList.remove("active");
+      btnClie.classList.add("inactive");
+      scriptTab.style.display = "grid";
+      clieTab.style.display = "none";
+    });
+
+    btnClie.addEventListener("click", () => {
+      btnClie.classList.add("active");
+      btnClie.classList.remove("inactive");
+      btnScript.classList.remove("active");
+      btnScript.classList.add("inactive");
+      scriptTab.style.display = "none";
+      clieTab.style.display = "grid";
+    });
+
+    // Copy Script
+    function copyScript(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        let toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
+      });
+    }
+
+    // Mở link ở tab mới
+    function goToLink(url) {
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
